@@ -22,8 +22,8 @@ class BlasterType extends AbstractType
          ->add('categories', 'entity', array(
              'class' => 'Blaster\TaskBundle\Entity\Category',
              'query_builder' => function(CategoryRepository $cr) {
-                 return $cr->createQueryBuilder('c');
-                 dump($cr->findAll());die;
+                 return $cr->createQueryBuilder('c')
+                     ->orderBy('c.name', 'ASC');
             },
 
          ))

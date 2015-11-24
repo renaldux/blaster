@@ -38,18 +38,22 @@ class BlasterManager
      */
     public function myTask()
     {
-        $respponse = [];
+        $response = [];
+        try {
+            $blaster = new Blaster();
+            $blaster->setEmail('simona@petraitis.lt');
+            $errors = $this->validator->validate($blaster);
 
-        $blaster = new Blaster();
-        $blaster->setEmail('simona@petraitis.lt');
-        $blaster->addCategory();
-        $errors = $this->validator->validate($blaster);
-
-        if (count($errors) > 0) {
-            $errorsString = (string) $errors;
-
-            return '<pre>'.print_r($errorsString, true).'</pre>';
+            if (count($errors) > 0) {
+                $response['status'] = 'failed';
+                $response['message'] = $errors;
+            }
+            $response['status'] = 'success';
+            $response['message'] = 'all success';
+        }catch (\Exception $e){
+            $response['status'] = 'failed';
+            $response['message'][] = $e->getMessage();
         }
-        return 'all validated';
+        return $response;
     }
 }

@@ -4,13 +4,14 @@ namespace Blaster\TaskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Events;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Blaster
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="Blaster\TaskBundle\Entity\BlasterRepository")
+ * @UniqueEntity("email")
  */
 class Blaster
 {
@@ -45,7 +46,10 @@ class Blaster
      */
     private $categories;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="Blaster\CrontaskBundle\Entity\Newsletter", mappedBy="user")
+     */
+    private $newsletters;
 
     /**
      * Constructor
@@ -145,5 +149,54 @@ class Blaster
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return bool
+     * @Assert\IsFalse(message = "sorry, your email did not pass validation..")
+     */
+    public function hasBlacklistedName()
+    {
+        $disabled_emails=['simonas'];
+        $mail_parts = explode('@', $this->email);
+        $mail_starts = reset($mail_parts);
+        if( in_array($mail_starts, $disabled_emails) ){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Add newsletter
+     *
+     * @param \Blaster\CrontaskBundle\Entity\Newsletter $newsletter
+     *
+     * @return Blaster
+     */
+    public function addNewsletter(\Blaster\CrontaskBundle\Entity\Newsletter $newsletter)
+    {
+        $this->newsletters[] = $newsletter;
+
+        return $this;
+    }
+
+    /**
+     * Remove newsletter
+     *
+     * @param \Blaster\CrontaskBundle\Entity\Newsletter $newsletter
+     */
+    public function removeNewsletter(\Blaster\CrontaskBundle\Entity\Newsletter $newsletter)
+    {
+        $this->newsletters->removeElement($newsletter);
+    }
+
+    /**
+     * Get newsletters
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNewsletters()
+    {
+        return $this->newsletters;
     }
 }

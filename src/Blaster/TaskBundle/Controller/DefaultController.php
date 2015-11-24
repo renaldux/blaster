@@ -23,23 +23,14 @@ class DefaultController extends Controller
 
         $blaster = new Blaster();
         $form = $this->createForm(new BlasterType(), $blaster, array('method'=>'POST'));
-
+        $errors = [];
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) {
-            dump($blaster);
-            foreach($blaster->getCategories() as $cat){
-                dump($cat);
-            }
-            exit;
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($blaster);
-            $em->flush();
 
         }
         return $this->render('BlasterTaskBundle:Default:index.html.twig', [
-                'categories' => $this->getCategoryRepository()->findAll(),
-                'form'       => $form->createView()
-
+                'form'       => $form->createView(),
+                'errors'     => $errors
             ]);
 
     }

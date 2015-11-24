@@ -1,0 +1,4 @@
+services:
+    blaster_crontask.newsletter_manager:
+        class: Blaster\CrontaskBuncle\Services\NewsletterManager
+        arguments: ["@doctrine.orm.default_entity_manager", "@validator"]

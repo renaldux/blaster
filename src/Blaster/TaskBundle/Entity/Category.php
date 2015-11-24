@@ -37,6 +37,10 @@ class Category
      */
     private $blasters;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Blaster\CrontaskBundle\Entity\Newsletter", mappedBy="category")
+     */
+    private $newsletter;
 
     /**
      * Constructor
@@ -120,5 +124,39 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Add newsletter
+     *
+     * @param \Blaster\CrontaskBundle\Entity\Newsletter $newsletter
+     *
+     * @return Category
+     */
+    public function addNewsletter(\Blaster\CrontaskBundle\Entity\Newsletter $newsletter)
+    {
+        $this->newsletter[] = $newsletter;
+
+        return $this;
+    }
+
+    /**
+     * Remove newsletter
+     *
+     * @param \Blaster\CrontaskBundle\Entity\Newsletter $newsletter
+     */
+    public function removeNewsletter(\Blaster\CrontaskBundle\Entity\Newsletter $newsletter)
+    {
+        $this->newsletter->removeElement($newsletter);
+    }
+
+    /**
+     * Get newsletter
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNewsletter()
+    {
+        return $this->newsletter;
     }
 }

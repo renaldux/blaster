@@ -1,3 +1,7 @@
+blaster_crontask:
+    resource: "@BlasterCrontaskBundle/Resources/config/routing.yml"
+    prefix:   /crontasks
+
 blaster_task:
     resource: "@BlasterTaskBundle/Resources/config/routing.yml"
     prefix:   /

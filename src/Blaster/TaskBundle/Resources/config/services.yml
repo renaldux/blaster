@@ -1,0 +1,4 @@
+services:
+    blaster_task.example:
+        class: Blaster\TaskBundle\Services\BlasterManager
+        arguments: ["@doctrine.orm.default_entity_manager", "@validator"]

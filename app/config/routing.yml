@@ -1,0 +1,3 @@
+blaster_task:
+    resource: "@BlasterTaskBundle/Resources/config/routing.yml"
+    prefix:   /

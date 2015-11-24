@@ -11,15 +11,3 @@
 {{ form_end(form) }}
 {% endblock form_row %}
 
-{#
-<br>
-<form method="post" action="{{ path('blaster_task_homepage') }}">
-    <input placeholder="enter name" type="text" value="" name="name" /><br>
-    <input placeholder="enter email" type="email" value="" name="name" /><br>
-    <select multiple>
-        {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-        {% endfor %}
-    </select><br>
-    <input type="submit" value="subscribe" />
-</form>#}

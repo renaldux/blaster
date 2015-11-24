@@ -7,6 +7,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class BlasterType
+ * @package Blaster\TaskBundle\Form
+ */
 class BlasterType extends AbstractType
 {
     /**
@@ -27,7 +31,7 @@ class BlasterType extends AbstractType
             },
                 'multiple'=>true
          ))
-            ->add('save','submit', array('label'=>'isaugoti'))
+            ->add('save','submit', array('label'=>'išsaugoti'))
         ;
     }
     

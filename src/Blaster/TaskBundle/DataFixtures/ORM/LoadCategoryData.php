@@ -7,8 +7,15 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+/**
+ * Class LoadCategoryData
+ * @package Blaster\TaskBundle\DataFixtures\ORM
+ */
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
 
@@ -29,6 +36,9 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->addReference('orai', $cat3);
     }
 
+    /**
+     * @return int
+     */
     public function getOrder()
     {
         return 1;

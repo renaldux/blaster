@@ -7,8 +7,15 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Blaster\TaskBundle\Entity\Blaster;
 
+/**
+ * Class LoadBlasterData
+ * @package Blaster\TaskBundle\DataFixtures\ORM
+ */
 class LoadBlasterData extends AbstractFixture implements OrderedFixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
 
@@ -28,6 +35,9 @@ class LoadBlasterData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
+    /**
+     * @return int
+     */
     public function getOrder()
     {
         return 2;

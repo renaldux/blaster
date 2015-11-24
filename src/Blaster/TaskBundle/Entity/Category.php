@@ -114,6 +114,9 @@ class Category
         return $this->blasters;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->name;

@@ -1,1 +1,33 @@
-Hello {{ name }}!
+{% block form_row %}
+    {% spaceless %}
+        <div class="control-group">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_row %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+    <select multiple>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+{{ form_end(form) }}
+{% endblock form_row %}
+
+{#
+<br>
+<form method="post" action="{{ path('blaster_task_homepage') }}">
+    <input placeholder="enter name" type="text" value="" name="name" /><br>
+    <input placeholder="enter email" type="email" value="" name="name" /><br>
+    <select multiple>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit" value="subscribe" />
+</form>#}

@@ -4,6 +4,7 @@ namespace Blaster\TaskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Events;
 
 /**
  * Blaster
@@ -29,8 +30,14 @@ class Blaster
      * @Assert\NotBlank()
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.", checkMX = true, checkHost = true)
      */
+    
     private $email;
 
+    /**
+     * @ORM\Column(name="name", type="string", length=64)
+     * @Assert\NotBlank()
+     */
+    private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity="Blaster\TaskBundle\Entity\Category", inversedBy="blasters")
@@ -114,5 +121,29 @@ class Blaster
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Blaster
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

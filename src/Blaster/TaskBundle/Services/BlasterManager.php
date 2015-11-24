@@ -3,7 +3,6 @@
 namespace Blaster\TaskBundle\Services;
 
 use Blaster\TaskBundle\Entity\Blaster;
-use Blaster\TaskBundle\Entity\Category;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -23,22 +22,24 @@ class BlasterManager
      */
     private $validator;
 
-
+    /**
+     * BlasterManager constructor.
+     * @param EntityManager $em
+     * @param ValidatorInterface $validator
+     */
     public function __construct(EntityManager $em, ValidatorInterface $validator)
     {
         $this->em = $em;
         $this->validator = $validator;
     }
-    
+
+    /**
+     * @return string|void
+     */
     public function myTask()
     {
         $respponse = [];
 
-        $category = new Category();
-        $category->setName('naujienos');
-        $this->em->persist($category);
-        $this->em->flush();
-        return;
         $blaster = new Blaster();
         $blaster->setEmail('simona@petraitis.lt');
         $blaster->addCategory();

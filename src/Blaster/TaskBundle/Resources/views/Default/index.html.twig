@@ -3,19 +3,11 @@
         <div class="control-group">
             {{ form_label(form) }}
             {{ form_errors(form) }}
-            {{ form_widget(form) }}
         </div>
     {% endspaceless %}
-{% endblock form_row %}
 
-{% block form_row %}
 {{ form_start(form) }}
 {{ form_widget(form) }}
-    <select multiple>
-        {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-        {% endfor %}
-    </select>
 {{ form_end(form) }}
 {% endblock form_row %}
 

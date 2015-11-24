@@ -25,7 +25,7 @@ class BlasterType extends AbstractType
                  return $cr->createQueryBuilder('c')
                      ->orderBy('c.name', 'ASC');
             },
-
+                'multiple'=>true
          ))
             ->add('save','submit', array('label'=>'isaugoti'))
         ;

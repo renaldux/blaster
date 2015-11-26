@@ -43,6 +43,7 @@ class Blaster
     /**
      * @ORM\ManyToMany(targetEntity="Blaster\TaskBundle\Entity\Category", inversedBy="blasters")
      * @ORM\JoinTable(name="users2categories")
+     * @Assert\NotBlank()
      */
     private $categories;
 

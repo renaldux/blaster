@@ -1,12 +1,3 @@
-<ul>
-    {% if errors %}
-    {% for error in errors %}
-        <li>{{ error.message }}</li>
-    {% endfor %}
-    {% endif %}
-</ul>
-
-
 {% block form_row %}
 
 {{ form_start(form) }}

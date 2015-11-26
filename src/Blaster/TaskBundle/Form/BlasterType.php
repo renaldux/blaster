@@ -31,7 +31,7 @@ class BlasterType extends AbstractType
             },
                 'multiple'=>true
          ))
-            ->add('save','submit', array('label'=>'išsaugoti'))
+            ->add('save','submit', array('label'=>'save'))
         ;
     }
     

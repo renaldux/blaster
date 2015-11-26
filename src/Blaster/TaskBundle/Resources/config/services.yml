@@ -1,13 +1,11 @@
 services:
-    blaster_task.blaster_manager:
-        class: Blaster\TaskBundle\Services\BlasterManager
-        arguments: ["@doctrine.orm.default_entity_manager", "@validator"]
 
-    blaster_task.category_manager:
-        class: Blaster\TaskBundle\Services\CategoryManager
-        arguments: ["@doctrine.orm.default_entity_manager", "@validator"]
+    blaster_task.newsletter_subscriber:
+        class: Blaster\TaskBundle\EventListener\NewsletterSignupListener
+        arguments: ["@doctrine.orm.default_entity_manager", "@validator", "@logger"]
+        tags:
+            - { name: kernel.event_listener, event: subscribe_newsletter, method: subscribeNewsletter }
 
-#    blaster_task.entity_listener.subscribe_email:
-#        class: Blaster\TaskBundle\EventListener\Doctrine\SubscribtionListener
-#        tags:
-#            - { name: doctrine.event_listener, entity: Blaster\TaskBundle\Entity\Blaster, event: postPersist }
+#    blaster_task.blaster_manager:
+#        class: Blaster\TaskBundle\Services\BlasterManager
+#        arguments: ["@doctrine.orm.default_entity_manager", "@validator"]

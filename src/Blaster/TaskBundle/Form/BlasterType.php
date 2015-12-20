@@ -32,7 +32,13 @@ class BlasterType extends AbstractType
                 'multiple'=>true
          ))
             ->add('save','submit', array('label'=>'save'))
+//            ->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'checkEmail'])
         ;
+    }
+
+    private function checkEmail(FormEvent $event)
+    {
+        
     }
     
     /**

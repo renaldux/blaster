@@ -4,6 +4,7 @@ namespace Blaster\TaskBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Blaster\TaskBundle\Validator\Constraints as  BlasterAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -30,6 +31,7 @@ class Blaster
      * @ORM\Column(name="email", type="string", length=64)
      * @Assert\NotBlank()
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.", checkMX = true, checkHost = true)
+     * @BlasterAssert\ContainsEmail
      */
     
     private $email;
@@ -150,21 +152,6 @@ class Blaster
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return bool
-     * @Assert\IsFalse(message = "sorry, your email did not pass validation..")
-     */
-    public function hasBlacklistedName()
-    {
-        $disabled_emails=['simonas'];
-        $mail_parts = explode('@', $this->email);
-        $mail_starts = reset($mail_parts);
-        if( in_array($mail_starts, $disabled_emails) ){
-            return true;
-        }
-        return false;
     }
 
     /**
